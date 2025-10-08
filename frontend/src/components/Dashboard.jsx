@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// Backend ka live URL
+const API_URL = 'https://taskmanagementsystem-4ug7.onrender.com/api/tasks';
+
 const Dashboard = () => {
     const [tasks, setTasks] = useState([]);
     const [newTaskName, setNewTaskName] = useState('');
@@ -11,7 +14,8 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/tasks');
+                // URL ko live URL se replace kiya
+                const response = await axios.get(API_URL);
                 setTasks(response.data);
             } catch (error) {
                 console.error('Error fetching tasks:', error);
@@ -40,7 +44,8 @@ const Dashboard = () => {
         e.preventDefault();
         if (!newTaskName.trim()) return;
         try {
-            const response = await axios.post('http://localhost:5000/api/tasks', {
+            // URL ko live URL se replace kiya
+            const response = await axios.post(API_URL, {
                 name: newTaskName,
                 priority: newPriority,
                 dueDate: newDueDate || null
@@ -56,7 +61,8 @@ const Dashboard = () => {
 
     const handleToggleComplete = async (taskId) => {
         try {
-            const response = await axios.put(`http://localhost:5000/api/tasks/${taskId}`);
+            // URL ko live URL se replace kiya
+            const response = await axios.put(`${API_URL}/${taskId}`);
             const updatedTask = response.data;
             
             setTasks(tasks.map(task =>
@@ -73,7 +79,8 @@ const Dashboard = () => {
 
     const handleDeleteTask = async (taskId) => {
         try {
-            await axios.delete(`http://localhost:5000/api/tasks/${taskId}`);
+            // URL ko live URL se replace kiya
+            await axios.delete(`${API_URL}/${taskId}`);
             setTasks(tasks.filter(task => task._id !== taskId));
             showNotification('Task Deleted!');
         } catch (error) {
