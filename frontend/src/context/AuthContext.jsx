@@ -30,9 +30,12 @@ export const AuthProvider = ({ children }) => {
             setUser(res.data.user);
             return { success: true };
         } catch (error) {
-            console.error(error);
-            const message = error.response?.data?.message || 'Login failed';
-            const details = error.response?.data?.details ? ` (${error.response.data.details})` : '';
+            console.error("Login Error:", error);
+            if (!error.response) {
+                return { success: false, message: 'Network error: Backend server unreachable' };
+            }
+            const message = error.response.data?.message || 'Login failed';
+            const details = error.response.data?.details ? ` (${error.response.data.details})` : '';
             return { success: false, message: message + details };
         }
     };
@@ -46,9 +49,12 @@ export const AuthProvider = ({ children }) => {
             setUser(res.data.user);
             return { success: true };
         } catch (error) {
-            console.error(error);
-            const message = error.response?.data?.message || 'Registration failed';
-            const details = error.response?.data?.details ? ` (${error.response.data.details})` : '';
+            console.error("Signup Error:", error);
+            if (!error.response) {
+                return { success: false, message: 'Network error: Backend server unreachable' };
+            }
+            const message = error.response.data?.message || 'Registration failed';
+            const details = error.response.data?.details ? ` (${error.response.data.details})` : '';
             return { success: false, message: message + details };
         }
     };

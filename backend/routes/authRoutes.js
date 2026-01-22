@@ -43,8 +43,8 @@ router.post('/register', async (req, res) => {
             }
         );
     } catch (error) {
-        console.error(error.message);
-        res.status(500).send('Server Error');
+        console.error("Auth Error:", error.message);
+        res.status(500).json({ message: 'Server Error', details: error.message });
     }
 });
 
@@ -80,8 +80,8 @@ router.post('/login', async (req, res) => {
             }
         );
     } catch (error) {
-        console.error(error.message);
-        res.status(500).send('Server Error');
+        console.error("Auth Error:", error.message);
+        res.status(500).json({ message: 'Server Error', details: error.message });
     }
 });
 
