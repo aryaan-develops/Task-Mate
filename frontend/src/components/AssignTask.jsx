@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { Loader2, CheckCircle, AlertCircle } from 'lucide-react';
+import API_BASE_URL from '../config';
 
 const AssignTask = () => {
     const [users, setUsers] = useState([]);
@@ -18,7 +19,7 @@ const AssignTask = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/users');
+                const res = await axios.get(`${API_BASE_URL}/users`);
                 setUsers(res.data);
                 if (res.data.length > 0) {
                     setAssignedTo(res.data[0]._id); // Default to first user
@@ -36,7 +37,7 @@ const AssignTask = () => {
         setMsg(null);
 
         try {
-            await axios.post('http://localhost:5000/api/admin/assign-task', {
+            await axios.post(`${API_BASE_URL}/admin/assign-task`, {
                 title,
                 description,
                 assignedTo,

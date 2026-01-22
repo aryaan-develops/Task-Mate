@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { User, CheckCircle, Clock } from 'lucide-react';
+import API_BASE_URL from '../config';
 
 const UserProgressPage = () => {
     const [progressData, setProgressData] = useState([]);
@@ -13,7 +14,7 @@ const UserProgressPage = () => {
 
     const fetchUserProgress = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/admin/user-progress');
+            const res = await axios.get(`${API_BASE_URL}/admin/user-progress`);
             setProgressData(res.data);
             setLoading(false);
         } catch (err) {

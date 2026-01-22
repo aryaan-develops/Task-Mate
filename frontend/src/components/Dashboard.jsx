@@ -17,8 +17,9 @@ import {
 import { useAuth } from '../context/AuthContext';
 import AssignTask from './AssignTask';
 import AdminAssignedTasks from './AdminAssignedTasks';
+import API_BASE_URL from '../config';
 
-const API_URL = 'http://localhost:5000/api/tasks';
+const API_URL = `${API_BASE_URL}/tasks`;
 
 const Dashboard = () => {
     const { user } = useAuth();

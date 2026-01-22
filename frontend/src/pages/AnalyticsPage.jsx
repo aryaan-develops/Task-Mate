@@ -9,8 +9,9 @@ import {
     TrendingUp,
     Activity
 } from 'lucide-react';
+import API_BASE_URL from '../config';
 
-const API_URL = 'http://localhost:5000/api/tasks';
+const API_URL = `${API_BASE_URL}/tasks`;
 
 const AnalyticsPage = () => {
     const [tasks, setTasks] = useState([]);

@@ -2,8 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Clock, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import API_BASE_URL from '../config';
 
-const API_URL = 'http://localhost:5000/api/tasks';
+const API_URL = `${API_BASE_URL}/tasks`;
 
 const YourTasksPage = () => {
     const [tasks, setTasks] = useState([]);
@@ -58,8 +59,8 @@ const YourTasksPage = () => {
                                 <div className="flex items-center gap-3 mb-2">
                                     <h3 className="font-bold text-lg text-slate-700">{task.name}</h3>
                                     <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${task.priority === 'High' ? 'bg-red-100 text-red-600' :
-                                            task.priority === 'Medium' ? 'bg-yellow-100 text-yellow-600' :
-                                                'bg-green-100 text-green-600'
+                                        task.priority === 'Medium' ? 'bg-yellow-100 text-yellow-600' :
+                                            'bg-green-100 text-green-600'
                                         }`}>
                                         {task.priority || 'Medium'}
                                     </span>
@@ -80,8 +81,8 @@ const YourTasksPage = () => {
                                         value={task.status || 'pending'}
                                         onChange={(e) => handleStatusUpdate(task._id, e.target.value)}
                                         className={`p-3 rounded-xl border-2 font-medium outline-none cursor-pointer transition-colors ${task.status === 'completed' ? 'border-green-100 bg-green-50 text-green-600' :
-                                                task.status === 'in-progress' ? 'border-blue-100 bg-blue-50 text-blue-600' :
-                                                    'border-slate-100 bg-slate-50 text-slate-500'
+                                            task.status === 'in-progress' ? 'border-blue-100 bg-blue-50 text-blue-600' :
+                                                'border-slate-100 bg-slate-50 text-slate-500'
                                             }`}
                                     >
                                         <option value="pending">Pending</option>
